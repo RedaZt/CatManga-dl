@@ -5,12 +5,12 @@ A python script to download manga from [CatManga.org](https://catmanga.org/).
   * [Python 3.4+](https://www.python.org/downloads/)
 
 ## Usage
-Download the catmanga-dl.py 
-Navigate to where the file is located
-Open the command line 
-Execute the following command :
-catmanga-dl.py [-c Chapters' Links] [-t Title's Link] (Windows)
-python3 catmanga-dl.py [-c Chapters' Links] [-t Title's Link] (Linux & MacOs)
+* Download the catmanga-dl.py 
+* Navigate to where the file is located
+* Open the command line 
+* Execute the following command :
+*   catmanga-dl.py [-c Chapters' Links] [-t Title's Link] (Windows)
+*   python3 catmanga-dl.py [-c Chapters' Links] [-t Title's Link] (Linux & MacOs)
 
 
 ### Example usage
