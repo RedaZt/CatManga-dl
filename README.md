@@ -1,5 +1,5 @@
-# Catmanga-dl
-A python script to download manga from [CatManga.org](https://catmanga.org/).
+# CatManga-dl
+A python script to download manga from [CatManga.org].(https://catmanga.org/)
 
 ## Requirements
   * [Python 3.4+](https://www.python.org/downloads/)
