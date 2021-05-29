@@ -9,8 +9,9 @@ Download the catmanga-dl.py
 Navigate to where the file is located
 Open the command line 
 Execute the following command :
- catmanga-dl.py [-c Chapters' Links] [-t Title's Link] (Windows)
- python3 catmanga-dl.py [-c Chapters' Links] [-t Title's Link] (Linux & MacOs)
+catmanga-dl.py [-c Chapters' Links] [-t Title's Link] (Windows)
+python3 catmanga-dl.py [-c Chapters' Links] [-t Title's Link] (Linux & MacOs)
+
 
 ### Example usage
 ```
