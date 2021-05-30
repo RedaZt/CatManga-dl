@@ -3,6 +3,8 @@ A python script to download manga from [CatManga.org](https://catmanga.org/).
 
 ## Requirements
   * [Python 3.4+](https://www.python.org/downloads/)
+  * bs4
+  * requests_html
 
 ## Usage
 * Download the catmanga-dl.py 
