@@ -1,8 +1,8 @@
-import sys, argparse, os, shutil, json, zipfile
+import sys, argparse, os, shutil, json, zipfile, pprint
 from bs4 import BeautifulSoup as bs
 from requests_html import HTMLSession
 
-DESCRIPTION = '''Download chapters from catmanga.com'''
+DESCRIPTION = '''Download chapters from catmanga.org'''
 
 SIGNATURE = r'''                                           
             _                                               _ _ 
@@ -15,7 +15,7 @@ SIGNATURE = r'''
 
 parser = argparse.ArgumentParser(description=DESCRIPTION)
 parser.add_argument("-c", "--chapter", nargs='+', dest='chapters', help="chapters' link", required=False)
-parser.add_argument("-t", "--title", nargs='?', dest='title', help="Title's link", required=False)
+parser.add_argument("-t", "--title", nargs='+', dest='title', help="Title's link", required=False)
 
 session = HTMLSession()
 dictionary = {"+" : "", "!" : "", "?" : "", "%" : "", "*" : "", "/" : "", "#" : "", "\\": "", "&" : "and", ":" : "-",  '"' : ""}
@@ -35,7 +35,7 @@ def statusBar(total,current):
     out = "status : [" + printed_string + "] " + str(int((current / total) * 100)) + "%\r"
     print(f"{out}\r",end=end)
 
-def chapterDownloader(link):
+def downloadChapter(link):
     res = session.get(link)
     res.html.render(timeout=10000)
     soup = bs(res.html.html, "html.parser")
@@ -69,14 +69,18 @@ def chapterDownloader(link):
     shutil.rmtree(directory)
     print(f"Downloaded : {series_title} Ch. {chapter_number} - {groups}")
 
-def titleDownloader(link) :
+def downloadTitle(link) :
     res = session.get(link)
     res.html.render(timeout=10000)
     soup = bs(res.html.html, "html.parser")
     data = json.loads(soup.find("script", type="application/json").string)
+    title = data["props"]["pageProps"]["series"]["title"]
+    description = data["props"]["pageProps"]["series"]["description"]
     available_chapters = [chapter["number"] for chapter in data["props"]["pageProps"]["series"]["chapters"]]
 
-    print(available_chapters)
+    print(f"Manga : {title}")
+    # print(f"Description : {description}")
+    print(f"Available Chapters : {available_chapters}")
     
     requested_chapters = input("Chapters you want to download : ")
     while requested_chapters == '' :
@@ -96,7 +100,7 @@ def titleDownloader(link) :
 
     for i in requested_chapters :
         new_link = f"{link}/{i}"
-        chapterDownloader(new_link)
+        downloadChapter(new_link)
 
 if __name__ == "__main__" :
     print(SIGNATURE)
@@ -105,12 +109,11 @@ if __name__ == "__main__" :
         if args.chapters :
             for index, chapter in enumerate(args.chapters):
                 print(f"Downloading : {index+1}/{len(args.chapters)}")
-                chapterDownloader(chapter)
+                downloadChapter(chapter)
         elif args.title :
             for title in args.title :
-                titleDownloader(title)
+                downloadTitle(title)
     
     else : 
         parser.print_usage()
         parser.print_help()
-
