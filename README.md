@@ -1,5 +1,5 @@
 # CatManga-dl
-*Update*: RIP [CatManga](https://catmanga.org/), thanks for everything.
+*Update*: RIP [CatManga](https://catmanga.org/).
 
 A python script that was originally written to download manga from [CatManga](https://catmanga.org/).
 
